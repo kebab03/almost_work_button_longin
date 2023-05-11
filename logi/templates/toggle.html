@@ -58,20 +58,28 @@
         transform: translateX(100%);
       }
       .toggle-btn .label {
-        color: #fff;
+        color: #c80b0b;
         font-size: 14px;
-        position: absolute;
-        top: -20px;
-        left: 0;
+        position: relative;
+        top: 0px;
+        left: 5Spx;
         right: 0;
       }
+
+      
+
+
     </style>
   </head>
   <body>
     <div class="wrapper">
       <div class="progress">
+        <!--<button class="toggle-btn {{ 'active' if state == 'on' else '' }}" onclick="toggleSwitch()"{% if not username %} {{ session['username']}} {% endif %}>-->
+
+        <!---->
+          <button class="toggle-btn {{ 'active' if state == 'on' else '' }}" onclick="toggleSwitch()"{{ session['username']}}{% if not session['username'] %}disabled {{ session['username']}}{% endif %}>
         <!--<button class="toggle-btn {{ 'active' if state == 'on' else '' }}" onclick="toggleSwitch()" {% if not logged_in %}disabled{% endif %}>-->
-        <button class="toggle-btn {% if state == 'on' %}active{% endif %}" onclick="toggleSwitch()">
+        <!--<button class="toggle-btn {% if state == 'on' %}active{% endif %}" onclick="toggleSwitch()">-->
           <div class="inner-circle"></div>
           <div class="label">LED 1</div>
         </button>
@@ -79,7 +87,8 @@
       </div>
     </div>
     <script>
-      function toggleSwitch() {alert('intoggle html')
+      function toggleSwitch() {
+        //<!--alert('intoggle html')-->
         fetch("/toggle-state", {
           method: "POST"
         })

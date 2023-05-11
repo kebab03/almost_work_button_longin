@@ -38,7 +38,9 @@ def logout():
 @app.route('/toggle')
 def toggle():
     if 'username' not in session:
+        print("Now i'm not in Session")
         return redirect('/login')
+    print("Now i'm in Session==LogedIn")
     return render_template('toggle.html', state=state)
 
 # Define the /state route
@@ -49,7 +51,7 @@ def get_state():
     return jsonify(switch=state)
 
 # Define the toggle switch state route
-@app.route('/toggle-state', methods=['POST'])
+@app.route('/toggle-state', methods=['GET','POST'])
 def toggle_state():
     if 'username' not in session:
         return jsonify(error='Unauthorized access')
@@ -58,6 +60,6 @@ def toggle_state():
     return jsonify(switch=state)
 
 if __name__ == '__main__':
-    state = 'on'
+    state = 'off'
     app.run(debug=True)
 
